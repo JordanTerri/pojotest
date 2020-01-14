@@ -20,7 +20,7 @@ Import the library into your own pom.xml.
 	<dependency>
 		<groupId>org.jtbox.test</groupId>
 		<artifactId>pojotest</artifactId>
-		<version>0.0.1</version>
+		<version>1.0.0</version>
 		<scope>test</scope>
 	</dependency>
 	<dependency>
