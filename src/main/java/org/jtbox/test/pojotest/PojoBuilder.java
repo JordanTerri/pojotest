@@ -1,5 +1,7 @@
 package org.jtbox.test.pojotest;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Date;
@@ -23,8 +25,8 @@ public class PojoBuilder {
 	private PojoBuilder() {
 	}
 
-	public static <T> T createOne(final Class<T> clazz) throws IllegalAccessException, InstantiationException {
-		T myInstance = clazz.newInstance();
+	public static <T> T createOne(final Class<T> clazz) throws IllegalAccessException, InstantiationException, IllegalArgumentException, InvocationTargetException, SecurityException, NoSuchMethodException {
+		T myInstance = ( (Constructor<T>) clazz.getConstructor() ).newInstance();
 		Method[] methodList = clazz.getMethods();
 		for (Method method : methodList) {
 			if (ReflectionHelper.isSetter(method)) {
@@ -35,8 +37,8 @@ public class PojoBuilder {
 	}
 
 	public static <T> T createOne(final Class<T> clazz, final int index)
-			throws IllegalAccessException, InstantiationException {
-		T myInstance = clazz.newInstance();
+			throws IllegalAccessException, InstantiationException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
+		T myInstance = ( (Constructor<T>) clazz.getConstructor() ).newInstance();
 		Method[] methodList = clazz.getMethods();
 		for (Method method : methodList) {
 			if (ReflectionHelper.isSetter(method)) {
@@ -47,7 +49,7 @@ public class PojoBuilder {
 	}
 
 	public static <T> List<T> createMany(final Class<T> clazz, final int index)
-			throws IllegalAccessException, InstantiationException {
+			throws IllegalAccessException, InstantiationException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
 		List<T> list = new ArrayList<>();
 		for (int i = 0; i < index; i++) {
 			T t = createOne(clazz, i);
