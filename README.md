@@ -41,7 +41,7 @@ public class AbstractPojoTesterTest extends AbstractPojoTester<AuthorDTO>{
 }
 ```
 
-Run, and enjoy ;)
+Run your test, and enjoy ;)
 
 ## Features
 ### POJO Testing
